@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
+
+import { AuthService } from './../auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isCollapsed = false;
+  user: firebase.User;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(
+      user => this.user = user
+    );
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }

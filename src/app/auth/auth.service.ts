@@ -1,24 +1,23 @@
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
+@Injectable()
 export class AuthService {
+  user$: Observable<firebase.User>;
 
-  googgleLogin() {
+  constructor(private afAuth: AngularFireAuth) {
+    this.user$ = this.afAuth.authState;
+  }
+
+  googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-      .then(
-      (result) => {
-        console.log('Logged in as : ' + result.user.displayName);
-      }
-      )
-      .catch(
-        error => console.log(error)
-      );
+    this.afAuth.auth.signInWithRedirect(provider);
   }
 
   logout() {
-    firebase.auth().signOut()
-      .then(
-        result => console.log('Logged Out')
-      );
+    this.afAuth.auth.signOut();
   }
 }
+

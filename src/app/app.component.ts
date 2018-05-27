@@ -10,15 +10,15 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   ngOnInit() {
-    const firebaseConfig = {
-      apiKey: 'AIzaSyD1v2WKVy_1iX3tA0NM5naoIiI8fcQs-Rc',
-      authDomain: 'e-kart-d733d.firebaseapp.com',
-      databaseURL: 'https://e-kart-d733d.firebaseio.com',
-      projectId: 'e-kart-d733d',
-      storageBucket: 'e-kart-d733d.appspot.com',
-      messagingSenderId: '252071520353'
-    };
+    // const firebaseConfig = {
+    //   apiKey: 'AIzaSyD1v2WKVy_1iX3tA0NM5naoIiI8fcQs-Rc',
+    //   authDomain: 'e-kart-d733d.firebaseapp.com',
+    //   databaseURL: 'https://e-kart-d733d.firebaseio.com',
+    //   projectId: 'e-kart-d733d',
+    //   storageBucket: 'e-kart-d733d.appspot.com',
+    //   messagingSenderId: '252071520353'
+    // };
 
-    firebase.initializeApp(firebaseConfig);
+    // firebase.initializeApp(firebaseConfig);
   }
 }

@@ -1,7 +1,10 @@
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthGuardService } from './auth/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,13 +23,22 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'check-out', component: CheckOutComponent },
+  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService] },
   { path: 'order-success', component: OrderSuccessComponent },
   { path: 'my/orders', component: MyOrdersComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin/products', component: AdminProductsComponent },
   { path: 'admin/orders', component: AdminOrdersComponent },
 ];
+
+export const firebaseConfig = {
+  apiKey: 'AIzaSyD1v2WKVy_1iX3tA0NM5naoIiI8fcQs-Rc',
+  authDomain: 'e-kart-d733d.firebaseapp.com',
+  databaseURL: 'https://e-kart-d733d.firebaseio.com',
+  projectId: 'e-kart-d733d',
+  storageBucket: 'e-kart-d733d.appspot.com',
+  messagingSenderId: '252071520353'
+};
 
 @NgModule({
   declarations: [
@@ -45,9 +57,10 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

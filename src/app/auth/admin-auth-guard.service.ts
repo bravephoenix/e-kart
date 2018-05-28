@@ -14,12 +14,7 @@ export class AdminAuthGuardService implements CanActivate {
   }
 
   canActivate() {
-    return this.authService.user$.pipe(
-      switchMap(
-        user => {
-          return this.userService.getUser(user.uid);
-        }
-      ),
+    return this.authService.appUser$.pipe(
       map(appUser => {
         if (appUser.isAdmin) {
           return true;

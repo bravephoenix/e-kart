@@ -21,6 +21,7 @@ import { AuthService } from './auth/auth.service';
 import { AdminAuthGuardService } from './auth/admin-auth-guard.service';
 import { UserService } from './shared/user.service';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
   { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
   { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
+  { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
 ];
 
@@ -56,7 +58,8 @@ export const firebaseConfig = {
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

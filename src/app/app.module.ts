@@ -1,3 +1,4 @@
+import { CategoryService } from './shared/category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -5,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -22,6 +24,8 @@ import { AdminAuthGuardService } from './auth/admin-auth-guard.service';
 import { UserService } from './shared/user.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './shared/product.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -63,11 +67,13 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    CustomFormsModule,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AuthGuardService, UserService, AdminAuthGuardService,
+  providers: [AuthService, AuthGuardService, UserService, CategoryService, AdminAuthGuardService, ProductService,
     AngularFireAuth, AngularFireDatabase],
   bootstrap: [AppComponent]
 })

@@ -11,4 +11,19 @@ export class ProductService {
     return this.db.list('/products').push(product);
   }
 
+  update(uid: string, product) {
+    return this.db.object('/products/' + uid).update(product);
+  }
+
+  getAllProducts() {
+    return this.db.list('/products').snapshotChanges();
+  }
+
+  getProduct(uid: string) {
+    return this.db.object('/products/' + uid).valueChanges();
+  }
+
+  delete(uid: string) {
+    return this.db.object('/products/' + uid).remove();
+  }
 }

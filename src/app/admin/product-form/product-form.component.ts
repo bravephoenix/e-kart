@@ -1,21 +1,25 @@
+import { Category } from './../../shared/category.model';
+import { Product } from './../../shared/product.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../../shared/category.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { switchMap, map, take } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { ProductService } from '../../shared/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent implements OnInit {
-  categories$;
+export class ProductFormComponent implements OnInit, OnDestroy {
+  categories: Category[] = [];
   editMode = false;
   uid;
-  product = {};
-  // @ViewChild('f') product: NgForm;
+  product = {} as Product;
+  subscription: Subscription;
+
 
   constructor(private router: Router, private route: ActivatedRoute,
     private categoryService: CategoryService,
@@ -23,26 +27,49 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categories$ = this.categoryService.getCategories().pipe(
+    this.subscription = this.categoryService.getCategories().pipe(
       map(
         categories => {
           return categories.map(
-            category => {
-              return ({ key: category.payload.key, data: category.payload.val() });
+            c => {
+              const key = c.payload.key;
+              // console.log('key : ' + key);
+              const data: any = c.payload.val();
+              // console.log('data : ' + data.name);
+              const category: Category = {
+                id: key,
+                name: data.name
+              };
+              this.categories.push(category);
             }
           );
         }
       )
-    );
+    ).subscribe();
     // console.log(this.product);
     this.uid = this.route.snapshot.paramMap.get('id');
     // console.log(this.uid);
     if (this.uid) {
       this.editMode = true;
       this.productService.getProduct(this.uid).pipe(take(1)).subscribe(
-        product => this.product = product
+        (product: any) => {
+          console.log('Product : ' + product);
+          this.product = {
+            id: this.uid,
+            title: product.title,
+            price: product.price,
+            category: product.category,
+            imageUrl: product.imageUrl
+          };
+          // console.log('this.product : ' + this.product);
+        }
       );
     }
+    // console.log(this.product);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onSave(newProduct: NgForm) {

@@ -1,4 +1,3 @@
-
 <p>
   <a class="btn btn-primary" routerLink="/admin/products/new">New Product</a>
 </p>
@@ -16,10 +15,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of filteredProducts">
-      <td>{{ p.data.title }}</td>
-      <td>{{ p.data.price }}</td>
+      <td>{{ p.title }}</td>
+      <td>{{ p.price }}</td>
       <td>
-        <a [routerLink]="['/admin/products', p.key]">Edit</a>
+        <a [routerLink]="['/admin/products', p.id]">Edit</a>
       </td>
     </tr>
   </tbody>

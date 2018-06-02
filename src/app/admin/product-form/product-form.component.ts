@@ -53,7 +53,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       this.editMode = true;
       this.productService.getProduct(this.uid).pipe(take(1)).subscribe(
         (product: any) => {
-          console.log('Product : ' + product);
+          // console.log('Product : ' + product);
           this.product = {
             id: this.uid,
             title: product.title,

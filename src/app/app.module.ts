@@ -1,4 +1,3 @@
-import { CategoryService } from './shared/category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,6 +6,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { CustomFormsModule } from 'ng2-validation';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,6 +27,7 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './shared/product.service';
+import { CategoryService } from './shared/category.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -72,7 +74,11 @@ export const firebaseConfig = {
     CustomFormsModule,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [AuthService, AuthGuardService, UserService, CategoryService, AdminAuthGuardService, ProductService,
     AngularFireAuth, AngularFireDatabase],

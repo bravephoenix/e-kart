@@ -1,0 +1,7 @@
+table td, table th {
+  width: 25%;
+}
+
+.mat-table th{
+  font-size: 16px;
+}

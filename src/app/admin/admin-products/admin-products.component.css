@@ -1,7 +1,22 @@
-table td, table th {
-  width: 25%;
+table {
+  width: 100%;
 }
 
-.mat-table th{
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+table th {
   font-size: 16px;
+  color: black;
+  background-color: #007bff !important;
+}
+
+td, th {
+  width: 25%;
 }

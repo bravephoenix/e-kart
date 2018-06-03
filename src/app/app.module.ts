@@ -7,7 +7,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { CustomFormsModule } from 'ng2-validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
+import {
+  MatTableModule, MatSortModule, MatPaginatorModule,
+  MatFormFieldModule, MatInputModule, MatProgressSpinnerModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -78,7 +81,10 @@ export const firebaseConfig = {
     BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthService, AuthGuardService, UserService, CategoryService, AdminAuthGuardService, ProductService,
     AngularFireAuth, AngularFireDatabase],

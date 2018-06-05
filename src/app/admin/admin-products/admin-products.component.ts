@@ -14,7 +14,6 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   subscription: Subscription;
-  isLoadingResults = true;
 
   displayedColumns = ['title', 'price', 'category', 'edit'];
   dataSource: any = [];
@@ -24,7 +23,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.isLoadingResults = true;
     this.subscription = this.productService.getAllProducts().pipe(
       map(
         changes => {

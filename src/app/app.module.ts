@@ -9,7 +9,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatTableModule, MatSortModule, MatPaginatorModule,
-  MatFormFieldModule, MatInputModule, MatProgressSpinnerModule
+  MatFormFieldModule, MatInputModule, MatCardModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -31,9 +31,10 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './shared/product.service';
 import { CategoryService } from './shared/category.service';
+import { ProductCardComponent } from './shared/product-card/product-card.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: ProductsComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },
@@ -69,7 +70,8 @@ export const firebaseConfig = {
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,7 @@ export const firebaseConfig = {
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatCardModule
   ],
   providers: [AuthService, AuthGuardService, UserService, CategoryService, AdminAuthGuardService, ProductService,
     AngularFireAuth, AngularFireDatabase],

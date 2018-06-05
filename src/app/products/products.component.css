@@ -1,0 +1,16 @@
+.card, .card-img-top {
+  border-radius: 0;
+}
+
+.sticky-top {
+  top:80px;
+}
+
+/* @media (min-width:34em) {
+  .card-deck > .card
+  {
+      width: 29%;
+      flex-wrap: wrap;
+      flex: initial;
+  }
+} */
